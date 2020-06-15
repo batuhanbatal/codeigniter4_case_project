@@ -25,21 +25,36 @@
                 <div class="row w-100 mx-0">
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+
+                            <?php if (isset($validation)) { ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?= $validation->listErrors(); ?>
+                                </div>
+                            <?php } ?>
+
+                            <?php if (session()->get('alert')) { ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?= session()->getFlashdata('alert'); ?>
+                                </div>
+                            <?php } ?>
+
+
+
                             <h4>Hello! let's get started</h4>
                             <h6 class="font-weight-light">Sign in to continue.</h6>
                             <form action="<?= base_url() . '/login'; ?>" class="pt-3" method="post">
 
                                 <div class="form-group">
-                                    <input type="email" name="email" value="<?= set_value('email') ?>" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                                    <input type="text" name="email" value="<?= set_value('email') ?>" class="form-control form-control-lg" placeholder="Email">
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                                    <input type="password" name="password" class="form-control form-control-lg" placeholder="Password">
                                 </div>
 
                                 <div class="mt-3">
-                                    <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit" >SIGN IN</button>
-                                </div> 
+                                    <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">SIGN IN</button>
+                                </div>
                             </form>
                         </div>
                     </div>
