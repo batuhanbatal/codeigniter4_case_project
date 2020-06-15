@@ -62,4 +62,10 @@ class Login extends BaseController
             return view('auth/login.php', $data);
         }
     }
+
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to('/login');
+    }
 }
