@@ -12,7 +12,6 @@ class Auth implements FilterInterface
         {
             return redirect()->to('/login');
             die;
-            
         }
     }
 
