@@ -30,6 +30,12 @@
                     <input type="password" name="password_confirm" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
                 </div>
 
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Money Limit</label>
+                    <input type="text" name="money_limit" class="form-control" placeholder="Money Limit">
+                </div>
+                
+
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
 
                 <button class="btn btn-light">Cancel</button>

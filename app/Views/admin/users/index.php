@@ -17,6 +17,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>E-Mail</th>
+                            <th>Money Limit</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -26,6 +27,7 @@
                                 <td><?= $user['id']; ?></td>
                                 <td><?= $user['name']; ?></td>
                                 <td><?= $user['email']; ?></td>
+                                <td><?= $user['money_limit']; ?></td>
                                 <td>
                                     <a href="<?= base_url() . '/admin/users/edit/' . $user['id']; ?>" type="button" class="btn btn-warning">Edit</a>
                                     <a href="<?= base_url() . '/admin/users/delete/' . $user['id']; ?>" type="button" class="btn btn-danger">Delete</a>

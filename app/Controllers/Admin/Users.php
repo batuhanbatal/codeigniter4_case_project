@@ -29,17 +29,19 @@ class Users extends BaseController
 			'email'      	   => "required|valid_email|is_unique[users.email]",
 			'password'   	   => 'required|min_length[7]|max_length[30]',
 			'password_confirm' => 'required|matches[password]',
+			'money_limit'      => 'required|numeric',
 		];
 
 		if($this->validate($rules))
 		{
 			$data = 
 			[
-				'name'       => $this->request->getPost('name'),
-				'email'      => $this->request->getPost('email'),
-				'password'   => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s"),
+				'name'        => $this->request->getPost('name'),
+				'email'       => $this->request->getPost('email'),
+				'money_limit' => $this->request->getPost('money_limit'),
+				'password'    => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+				'created_at'  => date("Y-m-d H:i:s"),
+				'updated_at'  => date("Y-m-d H:i:s"),
 			];
 			$save = $user->save($data);
 			
@@ -103,6 +105,7 @@ class Users extends BaseController
 				'email'      	   => "required|valid_email|is_unique[users.email,id,$id]",
 				'password'   	   => 'permit_empty|min_length[7]|max_length[30]',
 				'password_confirm' => 'permit_empty|matches[password]',
+				'money_limit'      => 'required|numeric',
 			];
 
 			if($this->validate($rules))
@@ -111,9 +114,11 @@ class Users extends BaseController
 				[
 					'name'       => $this->request->getPost('name'),
 					'email'      => $this->request->getPost('email'),
+					'money_limit' => $this->request->getPost('money_limit'),
 					'password'   => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
 					'updated_at' => date("Y-m-d H:i:s"),
 				];
+				
 				$save = $user->update($id, $data);
 				
 				if($save)
