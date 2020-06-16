@@ -1,7 +1,8 @@
 <?php namespace App\Controllers\Admin;
 
 use App\Models\UserModel;
-use App\Controllers\BaseController; 
+use App\Controllers\BaseController;
+use App\Models\CaseReceiptModel;
 
 class Users extends BaseController
 {
@@ -49,7 +50,7 @@ class Users extends BaseController
 			{
 				$alert = 
 				[
-					'text' => 'Create Successful',
+					'text' => 'User Create Successful',
 					'type' => 'success',
 				];
 
@@ -60,7 +61,7 @@ class Users extends BaseController
 			{
 				$alert = 
 				[
-					'text' => 'Create Failed',
+					'text' => 'User Create Failed',
 					'type' => 'danger',
 				];
 
@@ -125,7 +126,7 @@ class Users extends BaseController
 				{
 					$alert = 
 					[
-						'text' => 'Update Successful',
+						'text' => 'User Update Successful',
 						'type' => 'success',
 					];
 				}   
@@ -133,7 +134,7 @@ class Users extends BaseController
 				{
 					$alert = 
 					[
-						'text' => 'Update Failed',
+						'text' => 'User Update Failed',
 						'type' => 'danger',
 					];
 				}
@@ -163,7 +164,7 @@ class Users extends BaseController
 		{
 			$alert = 
 			[
-				'text' => 'Delete Successful',
+				'text' => 'User Delete Successful',
 				'type' => 'success',
 			];
 		}
@@ -171,7 +172,7 @@ class Users extends BaseController
 		{
 			$alert = 
 			[
-				'text' => 'Delete Failed',
+				'text' => 'User Delete Failed',
 				'type' => 'danger',
 			];
 		}
@@ -180,30 +181,22 @@ class Users extends BaseController
 		return redirect()->to('/admin/users');
 	}
 
-	public function caseReceipt($id = NULL)
+	public function caseDetail($id = NULL)
 	{
 		$user = new UserModel();
+		$user_find = $user->where('id', $id)->first();
 
-		$delete = $user->where('id', $id)->delete();
+		$case = new CaseReceiptModel();
+		$data['case'] = $case->where('customer_id', $id)->findAll();
 
-		if($delete)
+		if($user_find)
 		{
-			$alert = 
-			[
-				'text' => 'Delete Successful',
-				'type' => 'success',
-			];
+			$data['delimitation_view'] = delimitation_view($data['case'], $user_find['money_limit']);
+			return view('admin/users/case-detail', $data);
 		}
 		else
 		{
-			$alert = 
-			[
-				'text' => 'Delete Failed',
-				'type' => 'danger',
-			];
+			throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 		}
-
-		session()->setFlashdata('alert', $alert);
-		return redirect()->to('/admin/users');
 	}
 }

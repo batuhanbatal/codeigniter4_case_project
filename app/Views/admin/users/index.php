@@ -31,7 +31,7 @@
                                 <td>
                                     <a href="<?= base_url() . '/admin/users/edit/' . $user['id']; ?>" type="button" class="btn btn-warning">Edit</a>
                                     <a href="<?= base_url() . '/admin/users/delete/' . $user['id']; ?>" type="button" class="btn btn-danger">Delete</a>
-                                    <a href="<?= base_url() . '/admin/users/case/' . $user['id']; ?>" type="button" class="btn btn-primary">Case</a>
+                                    <a href="<?= base_url() . '/admin/users/caseDetail/' . $user['id']; ?>" type="button" class="btn btn-primary">Case</a>
                                 </td>
                             </tr>
                         <?php } ?>

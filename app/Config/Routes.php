@@ -44,6 +44,7 @@ $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Adm
 		$routes->get('edit/(:num)',                'Users::edit/$1');
 		$routes->post('update/(:num)',             'Users::update/$1');
 		$routes->get('delete/(:num)',              'Users::delete/$1');
+		$routes->get('case-detail/(:num)',         'Users::caseDetail/$1');
 	});
 
 	$routes->group('case-receipt', function($routes)

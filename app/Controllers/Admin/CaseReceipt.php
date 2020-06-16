@@ -57,12 +57,12 @@ class CaseReceipt extends BaseController
 				{
 					$alert = 
 					[
-						'text' => 'Para Çekme Limitinizi Geçtiniz',
+						'text' => 'You have exceeded your withdrawal limit',
 						'type' => 'danger',
 					];
 
 					session()->setFlashdata('alert', $alert);
-					return redirect()->back();
+					return redirect()->to('/admin/case-receipt/create');
 				}
 			}
 			else if($this->request->getPost('action_type') == 'bloke hesap')
@@ -88,7 +88,7 @@ class CaseReceipt extends BaseController
 				];
 
 				session()->setFlashdata('alert', $alert);
-				return redirect()->back();
+				return redirect()->to('/admin/case-receipt/create');
 			}   
 			else
 			{
@@ -99,13 +99,13 @@ class CaseReceipt extends BaseController
 				];
 
 				session()->setFlashdata('alert', $alert);
-				return redirect()->back();
+				return redirect()->to('/admin/case-receipt/create');
 			}
 		}
 		else
 		{
 			session()->setFlashdata('validation_errors', $this->validator);
-			return redirect()->back();
+			return redirect()->to('/admin/case-receipt/create');
 		}
 	}
 }
