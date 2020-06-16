@@ -38,8 +38,6 @@
                                 </div>
                             <?php } ?>
 
-
-
                             <h4>Hello! let's get started</h4>
                             <h6 class="font-weight-light">Sign in to continue.</h6>
                             <form action="<?= base_url() . '/login'; ?>" class="pt-3" method="post">
