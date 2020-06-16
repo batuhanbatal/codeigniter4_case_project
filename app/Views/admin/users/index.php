@@ -28,7 +28,7 @@
                                 <td><?= $user['email']; ?></td>
                                 <td>
                                     <a href="<?= base_url() . '/admin/users/edit/' . $user['id']; ?>" type="button" class="btn btn-warning">Edit</a>
-                                    <button type="button" class="btn btn-danger">Delete</button>
+                                    <a href="<?= base_url() . '/admin/users/delete/' . $user['id']; ?>" type="button" class="btn btn-danger">Delete</a>
                                     <button type="button" class="btn btn-primary">Case</button>
                                 </td>
                             </tr>

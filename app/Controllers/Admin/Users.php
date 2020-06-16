@@ -123,9 +123,6 @@ class Users extends BaseController
 						'text' => 'Update Successful',
 						'type' => 'success',
 					];
-
-					session()->setFlashdata('alert', $alert);
-					return redirect()->back();
 				}   
 				else
 				{
@@ -134,10 +131,10 @@ class Users extends BaseController
 						'text' => 'Update Failed',
 						'type' => 'danger',
 					];
-
-					session()->setFlashdata('alert', $alert);
-					return redirect()->back();
 				}
+
+				session()->setFlashdata('alert', $alert);
+				return redirect()->back();
 			}
 			else
 			{
@@ -149,5 +146,32 @@ class Users extends BaseController
 		{
 			throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 		}
+	}
+
+	public function delete($id = NULL)
+	{
+		$user = new UserModel();
+
+		$delete = $user->where('id', $id)->delete();
+
+		if($delete)
+		{
+			$alert = 
+			[
+				'text' => 'Delete Successful',
+				'type' => 'success',
+			];
+		}
+		else
+		{
+			$alert = 
+			[
+				'text' => 'Delete Failed',
+				'type' => 'danger',
+			];
+		}
+
+		session()->setFlashdata('alert', $alert);
+		return redirect()->to('/admin/users');
 	}
 }
