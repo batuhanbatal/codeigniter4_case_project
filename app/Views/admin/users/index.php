@@ -8,6 +8,7 @@
             <?= $this->include('admin/layouts/messages') ?>
 
             <h4 class="card-title">User List</h4>
+            <a href="<?= base_url() . '/admin/users/create'; ?>" type="button" class="btn btn-primary">User Create</a>
 
             <div class="table-responsive">
                 <table class="table">
@@ -30,7 +31,6 @@
                                     <button type="button" class="btn btn-danger">Delete</button>
                                     <button type="button" class="btn btn-primary">Case</button>
                                 </td>
-
                             </tr>
                         <?php } ?>
                     </tbody>

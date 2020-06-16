@@ -14,6 +14,65 @@ class Users extends BaseController
 		return view('admin/users/index', $data);
 	}
 
+	public function create()
+	{
+		return view('admin/users/create');
+	}
+
+	public function store()
+	{
+		$user = new UserModel();
+
+		$rules = 
+		[
+			'name'       	   => 'required|min_length[3]|max_length[30]',
+			'email'      	   => "required|valid_email|is_unique[users.email]",
+			'password'   	   => 'required|min_length[7]|max_length[30]',
+			'password_confirm' => 'required|matches[password]',
+		];
+
+		if($this->validate($rules))
+		{
+			$data = 
+			[
+				'name'       => $this->request->getPost('name'),
+				'email'      => $this->request->getPost('email'),
+				'password'   => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+				'created_at' => date("Y-m-d H:i:s"),
+				'updated_at' => date("Y-m-d H:i:s"),
+			];
+			$save = $user->save($data);
+			
+			if($save)
+			{
+				$alert = 
+				[
+					'text' => 'Create Successful',
+					'type' => 'success',
+				];
+
+				session()->setFlashdata('alert', $alert);
+				return redirect()->back();
+			}   
+			else
+			{
+				$alert = 
+				[
+					'text' => 'Create Failed',
+					'type' => 'danger',
+				];
+
+				session()->setFlashdata('alert', $alert);
+				return redirect()->back();
+			}
+		}
+		else
+		{
+			session()->setFlashdata('validation_errors', $this->validator);
+			return redirect()->back();
+		}
+	}
+
 	public function edit($id = NULL)
 	{
 		$user = new UserModel();

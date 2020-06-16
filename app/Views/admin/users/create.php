@@ -4,20 +4,20 @@
 <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">User Edit</h4>
+            <h4 class="card-title">User Create</h4>
 
             <?= $this->include('admin/layouts/messages') ?>
 
-            <form action="<?= base_url() . '/admin/users/update/' . $user['id']; ?>" class="pt-3" method="post">
+            <form action="<?= base_url() . '/admin/users/store'; ?>" class="pt-3" method="post">
 
                 <div class="form-group">
                     <label for="exampleInputUsername1">Username</label>
-                    <input type="text" name="name" value="<?= $user['name']; ?>" class="form-control" id="exampleInputUsername1" placeholder="Username">
+                    <input type="text" name="name" class="form-control" id="exampleInputUsername1" placeholder="Username">
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="text" name="email" value="<?= $user['email']; ?>" class="form-control" placeholder="Email">
+                    <input type="text" name="email" class="form-control" placeholder="Email">
                 </div>
 
                 <div class="form-group">
