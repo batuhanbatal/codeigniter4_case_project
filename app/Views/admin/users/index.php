@@ -4,16 +4,17 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Basic Table</h4>
-            <p class="card-description">
-                Add class <code>.table</code>
-            </p>
+
+            <?= $this->include('admin/layouts/messages') ?>
+
+            <h4 class="card-title">User List</h4>
+
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name.</th>
+                            <th>Name</th>
                             <th>E-Mail</th>
                             <th>Actions</th>
                         </tr>
@@ -29,7 +30,7 @@
                                     <button type="button" class="btn btn-danger">Delete</button>
                                     <button type="button" class="btn btn-primary">Case</button>
                                 </td>
-                              
+
                             </tr>
                         <?php } ?>
                     </tbody>

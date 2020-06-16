@@ -37,18 +37,18 @@ $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Adm
 	
 	$routes->group('users', function($routes)
 	{
-		$routes->get('/',               'Users::index');
-		$routes->get('/edit/(:num)',    'Users::edit');
-		$routes->post('/update/(:num)', 'Users::update');
+		$routes->get('/',              'Users::index');
+		$routes->get('edit/(:num)',    'Users::edit/$1');
+		$routes->post('update/(:num)', 'Users::update/$1');
 
 	});
 });
 
 
 // Auth Routes
-$routes->get('/login',   'Auth\Login::index');
-$routes->post('/login',  'Auth\Login::action');
-$routes->get('/logout',  'Auth\Login::logout', ['filter' => 'auth']);
+$routes->get('login',   'Auth\Login::index');
+$routes->post('login',  'Auth\Login::action');
+$routes->get('logout',  'Auth\Login::logout', ['filter' => 'auth']);
 
 
 /**

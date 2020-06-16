@@ -26,17 +26,7 @@
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
 
-                            <?php if (isset($validation)) { ?>
-                                <div class="alert alert-danger" role="alert">
-                                    <?= $validation->listErrors(); ?>
-                                </div>
-                            <?php } ?>
-
-                            <?php if (session()->get('alert')) { ?>
-                                <div class="alert alert-danger" role="alert">
-                                    <?= session()->getFlashdata('alert'); ?>
-                                </div>
-                            <?php } ?>
+                            <?= $this->include('admin/layouts/messages') ?>
 
                             <h4>Hello! let's get started</h4>
                             <h6 class="font-weight-light">Sign in to continue.</h6>

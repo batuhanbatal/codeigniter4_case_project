@@ -5,11 +5,7 @@
     <div class="card">
         <div class="card-body">
 
-            <?php if (isset($validation)) { ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= $validation->listErrors(); ?>
-                </div>
-            <?php } ?>
+            <?= $this->include('admin/layouts/messages') ?>
 
             <form action="<?= base_url() . '/admin/users/update/' . $user['id']; ?>" class="pt-3" method="post">
 
@@ -20,7 +16,7 @@
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" name="email" value="<?= $user['email']; ?>" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                    <input type="text" name="email" value="<?= $user['email']; ?>" class="form-control" placeholder="Email">
                 </div>
 
                 <div class="form-group">

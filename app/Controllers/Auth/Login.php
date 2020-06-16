@@ -48,18 +48,23 @@ class Login extends BaseController
 
                 session()->set('user', $data);
                 return redirect()->to('/admin');
-
             }   
             else
             {
-                session()->setFlashdata('alert', 'Email or Password did not match');
+                $alert = 
+                [
+                    'text' => 'Email or Password did not match',
+                    'type' => 'danger',
+                ];
+            
+                session()->setFlashdata('alert', $alert);
                 return redirect()->to('/login');
             }
         }
         else
         {
-            $data['validation'] = $this->validator;
-            return view('auth/login.php', $data);
+            session()->setFlashdata('validation_errors', $this->validator);
+            return redirect()->back();
         }
     }
 

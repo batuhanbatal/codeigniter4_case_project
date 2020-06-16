@@ -14,7 +14,7 @@ class Users extends BaseController
 		return view('admin/users/index', $data);
 	}
 
-	public function edit($id)
+	public function edit($id = NULL)
 	{
 		$user = new UserModel();
 
@@ -23,16 +23,14 @@ class Users extends BaseController
 		if($data['user'])
 		{
 			return view('admin/users/edit', $data);
-
 		}
 		else
 		{
 			throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 		}
-
 	}
 
-	public function update($id)
+	public function update($id = NULL)
 	{
 		$user = new UserModel();
 
@@ -57,33 +55,40 @@ class Users extends BaseController
 					'password'   => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
 					'updated_at' => date("Y-m-d H:i:s"),
 				];
-				
-
 				$save = $user->update($id, $data);
 				
-
 				if($save)
 				{
-					session()->setFlashdata('alert', 'Update Successful');
+					$alert = 
+					[
+						'text' => 'Update Successful',
+						'type' => 'success',
+					];
+
+					session()->setFlashdata('alert', $alert);
 					return redirect()->back();
 				}   
 				else
 				{
-					session()->setFlashdata('alert', 'Update Failed');
+					$alert = 
+					[
+						'text' => 'Update Failed',
+						'type' => 'danger',
+					];
+
+					session()->setFlashdata('alert', $alert);
 					return redirect()->back();
 				}
 			}
 			else
 			{
-				$data['validation'] = $this->validator;
-				return view('admin/users/edit', $data);
+				session()->setFlashdata('validation_errors', $this->validator);
+				return redirect()->back();
 			}
 		}
 		else
 		{
 			throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 		}
-		
-
 	}
 }
