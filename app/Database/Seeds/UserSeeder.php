@@ -9,7 +9,7 @@ class UserSeeder extends Seeder
 		$users = [
 			[
 				'name'        => 'Batuhan',
-				'email'       => 'batuhanbatal@gmail.com',
+				'email'       => 'batuhan@gmail.com',
 				'password'    => password_hash(1234567, PASSWORD_DEFAULT),
 				'money_limit' => '20000.00',
 				'created_at'  => date("Y-m-d H:i:s"),

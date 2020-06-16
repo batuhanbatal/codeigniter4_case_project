@@ -13,6 +13,13 @@
                 <span class="menu-title">Users</span>
             </a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url() . '/admin/case-receipt' ?>">
+                <i class="mdi mdi-view-headline menu-icon"></i>
+                <span class="menu-title">Case Receipt</span>
+            </a>
+        </li>
     </ul>
 </nav>
 <!-- partial -->

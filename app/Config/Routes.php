@@ -38,12 +38,19 @@ $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Adm
 	// User Routes
 	$routes->group('users', function($routes)
 	{
-		$routes->get('/',              'Users::index');
-		$routes->get('create',         'Users::create');
-		$routes->post('store',         'Users::store');
-		$routes->get('edit/(:num)',    'Users::edit/$1');
-		$routes->post('update/(:num)', 'Users::update/$1');
-		$routes->get('delete/(:num)',  'Users::delete/$1');
+		$routes->get('/',                          'Users::index');
+		$routes->get('create',                     'Users::create');
+		$routes->post('store',                     'Users::store');
+		$routes->get('edit/(:num)',                'Users::edit/$1');
+		$routes->post('update/(:num)',             'Users::update/$1');
+		$routes->get('delete/(:num)',              'Users::delete/$1');
+	});
+
+	$routes->group('case-receipt', function($routes)
+	{
+		$routes->get('/',                          'CaseReceipt::index');
+		$routes->get('create',                     'CaseReceipt::create');
+		$routes->post('store',                     'CaseReceipt::store');
 	});
 });
 

@@ -21,8 +21,6 @@ class Users extends BaseController
 
 	public function store()
 	{
-		$user = new UserModel();
-
 		$rules = 
 		[
 			'name'       	   => 'required|min_length[3]|max_length[30]',
@@ -43,6 +41,8 @@ class Users extends BaseController
 				'created_at'  => date("Y-m-d H:i:s"),
 				'updated_at'  => date("Y-m-d H:i:s"),
 			];
+
+			$user = new UserModel();
 			$save = $user->save($data);
 			
 			if($save)
@@ -154,6 +154,33 @@ class Users extends BaseController
 	}
 
 	public function delete($id = NULL)
+	{
+		$user = new UserModel();
+
+		$delete = $user->where('id', $id)->delete();
+
+		if($delete)
+		{
+			$alert = 
+			[
+				'text' => 'Delete Successful',
+				'type' => 'success',
+			];
+		}
+		else
+		{
+			$alert = 
+			[
+				'text' => 'Delete Failed',
+				'type' => 'danger',
+			];
+		}
+
+		session()->setFlashdata('alert', $alert);
+		return redirect()->to('/admin/users');
+	}
+
+	public function caseReceipt($id = NULL)
 	{
 		$user = new UserModel();
 

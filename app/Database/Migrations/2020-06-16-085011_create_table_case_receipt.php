@@ -2,7 +2,7 @@
 
 use CodeIgniter\Database\Migration;
 
-class Receipt extends Migration
+class CreateTableCaseReceipt extends Migration
 {
 	public function up()
 	{
@@ -44,7 +44,7 @@ class Receipt extends Migration
 
 		$this->forge->addForeignKey('customer_id','users','id');
 		$this->forge->addKey('id', TRUE);
-		$this->forge->createTable('receipt');
+		$this->forge->createTable('case_receipt');
 	}
 
 	public function down()
